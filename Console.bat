@@ -13,6 +13,7 @@ echo "													  ";
 
 set curCon=adCon
 set /p adCon=%username%@AdminConsole $
+if /I "%adCon%" EQU "" goto :adCon
 if /I "%adCon%" EQU "help" goto :adHelp
 if /I "%adCon%" EQU "show" goto :show
 if /I "%adCon%" EQU "hide" goto :hide
@@ -25,7 +26,19 @@ if /I "%adCon%" EQU "swap" goto :run
 if /I "%adCon%" EQU "edit" goto :edit
 if /I "%adCon%" EQU "matrix" goto :matrixyn
 if /I "%adCon%" EQU "ran" goto :rnnum
+if /I "%adCon%" EQU "repo" goto :repo
+if /I "%adCon%" EQU "clr" goto :clr
 goto :Error
+
+:clr
+set /p variableToClear=What variable whould you like to clear? $
+set %variabletoClear%=0
+goto :%curCon%
+
+
+:repo
+edge https://github.com/PixelKracken/Console
+goto :%curcon%
 
 :rnNum
 echo Num 1:
@@ -41,10 +54,10 @@ echo %random%%random%%random%%random%%random%%random%%random%%random%%random%%ra
 goto :%curCon%
 
 :extra
-echo			This command is WIP, this will be deleted once the command works
 set /p variableToSet=Enter variable name:
-set /p %variableToSet%=Enter variable data:
-echo SUCCESSFULLY SET variable to %variableToSet%
+set /p variableData=Enter variable data:
+set %variableToSet%=%variableData%
+echo SUCCESSFULLY SET %variableToSet% to %variableData%
 goto :%curCon%
 
 :matrixyn
@@ -103,7 +116,7 @@ set /p pointer=$
 goto %pointer%
 
 :ver
-echo "Console: Release 1 [Beta Version 1.03] "
+echo "Console: Release 1 [Beta Version 1.04] "
 goto :%curCon%
 
 :Error
@@ -143,11 +156,14 @@ echo "swap                 |   Allows you to run normal cmd prompt commands"
 echo "edit                 |   This will open up a new window with the code"
 echo "matrix               |   Will you take the blue pill or the red pill?"
 echo "ran                  |   A very basic number generator               "
+echo "repo                 |   Goes to the github repo                     "
+echo "clr                  |   Clears a variable                           "
 goto :%curCon%
 
 :adCon
 set curCon=adCon
 set /p adCon=%username%@AdminConsole $
+if /I "%adCon%" EQU "" goto :adCon
 if /I "%adCon%" EQU "help" goto :adHelp
 if /I "%adCon%" EQU "show" goto :show
 if /I "%adCon%" EQU "hide" goto :hide
@@ -161,6 +177,8 @@ if /I "%adCon%" EQU "swap" goto :run
 if /I "%adCon%" EQU "edit" goto :edit
 if /I "%adCon%" EQU "matrix" goto :matrixyn
 if /I "%adCon%" EQU "ran" goto :rnnum
+if /I "%adCon%" EQU "repo" goto :repo
+if /I "%adCon%" EQU "clr" goto :clr
 goto :Error
 
 
